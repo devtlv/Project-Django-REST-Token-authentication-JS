@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todos List</title>
+</head>
+<body>
+    <script>
+        const token = 'adec50bc2e06f1891ecd4d7092f2b2950b32e913'; // Billy's token
+        const url = 'http://localhost:8000/api/todo/'; // Replace with your API URL
+
+        fetch(url, {
+            headers: {
+                'Authorization': `Token ${token}`
+            }
+        })
+        .then(response => response.json())
+        .then(data => {
+            data.forEach(todo => {
+                const todoElement = document.createElement('p');
+                todoElement.textContent = `${todo.title}: ${todo.description}`;
+                document.body.appendChild(todoElement);
+            });
+        })
+        .catch(error => console.error('Error:', error));
+    </script>
+</body>
+</html>
